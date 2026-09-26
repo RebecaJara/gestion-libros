@@ -1,0 +1,12 @@
+# Python
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+
+# Angular
+frontend/gestor-libros/node_modules/
+frontend/gestor-libros/.angular/
+
+# Environment variables
+.env
