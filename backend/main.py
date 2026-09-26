@@ -69,6 +69,18 @@ def actualizar_libro(
     return libro
 
 
+@app.delete("/libros/{libro_id}")
+def eliminar_libro(libro_id: int, db: Session = Depends(get_db)):
+    libro = db.query(models.Libro).filter(models.Libro.id == libro_id).first()
+    
+    if libro is None:
+        return {"mensaje": "Libro no encontrado"}
+    
+    db.delete(libro)
+    db.commit()
+    return {"mensaje": "Libro eliminado exitosamente"}
+
+
 @app.post("/libros")
 def crear_libro(libro: LibroCreate, db: Session = Depends(get_db)):
     nuevo_libro = models.Libro(
